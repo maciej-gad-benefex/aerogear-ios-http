@@ -140,11 +140,12 @@ class HttpTests: XCTestCase {
         http.request(method: .post, path: "/post",  parameters: parameters, completionHandler: {(response, error) in
             XCTAssertNil(error, "error should be nil")
             // should contain form data
-            let form = (response as! NSDictionary!)["form"] as! NSDictionary!
-            XCTAssertEqual(form?["key"] as? String,  "value", "should be equal")
+            let responseNSDictionary = response as! NSDictionary
+            let form = responseNSDictionary["form"] as! NSDictionary
+            XCTAssertEqual(form["key"] as? String,  "value", "should be equal")
             // should contain file data
-            let files = (response as! NSDictionary!)["files"] as! NSDictionary!
-            XCTAssertNotNil(files?["file"], "should contain file")
+            let files = responseNSDictionary["files"] as! NSDictionary
+            XCTAssertNotNil(files["file"], "should contain file")
             getExpectation.fulfill()
         })
         waitForExpectations(timeout: 10, handler: nil)

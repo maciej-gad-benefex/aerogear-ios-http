@@ -23,7 +23,7 @@ class UtilsTests: XCTestCase {
     func testMergeDictionaryWithNBothNoNil () {
         let dict1 = ["dic1_key": "dict1_value"]
         let dict2 = ["dic2_key": "dict2_value"]
-        var merged = merge(dict1, dict2)
+        let merged = merge(dict1, dict2)
         XCTAssertTrue(merged!["dic1_key"] == "dict1_value")
         XCTAssertTrue(merged!["dic2_key"] == "dict2_value")
     }
@@ -31,11 +31,11 @@ class UtilsTests: XCTestCase {
     func testMergeDictionaryWithNil () {
         let dict1 = ["dic1_key": "dict1_value"]
         let dict2:[String: String]? = nil
-        var merged = merge(dict1, dict2)
+        let merged = merge(dict1, dict2)
         XCTAssertTrue(merged!["dic1_key"] == "dict1_value")
         let dict3:[String: String]? = nil
         let dict4:[String: String]? = ["dic4_key": "dict4_value"]
-        var merged2 = merge(dict3, dict4)
+        let merged2 = merge(dict3, dict4)
         XCTAssertTrue(merged2!["dic4_key"] == "dict4_value")
     }
     
